@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+body {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hud {
+  width: 100vw;
+  height: 100vh;
+  padding: 14px;
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 14, 20, 0.82),
+      rgba(16, 18, 28, 0.64)
+    );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 22px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(22px) saturate(1.4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hud-collapsed {
+  height: 100vh;
+  padding: 12px 14px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 999px;
+}
+
+.drag-region {
+  --wails-draggable: drag;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 38px;
+}
+
+.compact-drag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.orb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff, #8ddcff 28%, #3977ff 70%);
+  box-shadow:
+    0 0 18px rgba(81, 172, 255, 0.95),
+    0 0 40px rgba(55, 120, 255, 0.35);
+  flex: 0 0 auto;
+}
+
+.title {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+.compact-title {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-top: 2px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.window-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  --wails-draggable: no-drag;
+}
+
+.icon-btn {
+  --wails-draggable: no-drag;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.08);
+  transition:
+    background 0.14s ease,
+    transform 0.14s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.icon-btn.danger:hover {
+  background: rgba(255, 80, 80, 0.25);
+}
+
+.log {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  padding-right: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.log::-webkit-scrollbar {
+  width: 7px;
+}
+
+.log::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+.message {
+  padding: 10px 11px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.075);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.message.user {
+  background: rgba(80, 140, 255, 0.16);
+}
+
+.message.error,
+.message.assistant.error {
+  background: rgba(255, 70, 70, 0.16);
+}
+
+.message-role {
+  margin-bottom: 5px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.message pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+  font-size: 12px;
+  line-height: 1.46;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  --wails-draggable: no-drag;
+}
+
+textarea {
+  width: 100%;
+  min-height: 48px;
+  max-height: 110px;
+  resize: none;
+  border: 0;
+  outline: none;
+  border-radius: 15px;
+  padding: 12px 13px;
+  color: rgba(255, 255, 255, 0.94);
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.36);
+}
+
+textarea:focus {
+  box-shadow:
+    inset 0 0 0 1px rgba(120, 190, 255, 0.55),
+    0 0 0 3px rgba(70, 145, 255, 0.13);
+}
+
+.send-btn {
+  border: 0;
+  border-radius: 15px;
+  padding: 0 16px;
+  min-width: 72px;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  background:
+    linear-gradient(135deg, rgba(70, 130, 255, 0.95), rgba(73, 202, 255, 0.85));
+  box-shadow: 0 10px 30px rgba(50, 130, 255, 0.26);
+}
+
+.send-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.hint {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.34);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
